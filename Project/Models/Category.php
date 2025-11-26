@@ -11,6 +11,7 @@ class Category extends BaseEntity{
         public string $description
     ){
         parent::__construct();
+        $this->storageFile=__DIR__."/../categories.json";
     }
 
     public function toArray(): array{
@@ -20,6 +21,10 @@ class Category extends BaseEntity{
             "description"=>$this->description,
             "createdAt"=>$this->createdAt
         ];
+    }
+
+    public function saveCategory(){
+        $this->saveCategoryToJson($this->toArray());
     }
 }
 
